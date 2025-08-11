@@ -1,52 +1,38 @@
-import React from "react";
-import "./style.css";
-
 export default function Explore() {
   const trips = [
     {
       id: 1,
-      title: "Paris, France",
-      date: "June 2025",
-      description: "The city of lights, romance, and world-famous landmarks.",
-      image: "/images/paris.jpg",
+      title: "Paris Adventure",
+      location: "France",
+      date: "2024-05-12",
+      image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
     },
     {
       id: 2,
-      title: "Tokyo, Japan",
-      date: "May 2025",
-      description: "A vibrant blend of tradition and futuristic technology.",
-      image: "/images/tokyo.jpg",
+      title: "Beach Paradise",
+      location: "Maldives",
+      date: "2024-06-20",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
     },
     {
       id: 3,
-      title: "Bali, Indonesia",
-      date: "April 2025",
-      description: "Tropical beaches, lush forests, and spiritual temples.",
-      image: "/images/bali.jpg",
-    },
-    {
-      id: 4,
-      title: "New York, USA",
-      date: "March 2025",
-      description: "The city that never sleeps, full of energy and culture.",
-      image: "/images/newyork.jpg",
+      title: "Mountain Escape",
+      location: "Switzerland",
+      date: "2024-07-10",
+      image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
     },
   ];
 
   return (
     <div className="container">
-      <h1>Explore Destinations</h1>
-      <p>Discover amazing travel spots shared by our community.</p>
-
+      <h2>Explore Trips</h2>
       <div className="gallery">
         {trips.map((trip) => (
-          <div key={trip.id} className="card">
+          <div className="card" key={trip.id}>
             <img src={trip.image} alt={trip.title} />
             <h3>{trip.title}</h3>
-            <p>
-              <small>📅 {trip.date}</small>
-            </p>
-            <p>{trip.description}</p>
+            <p>{trip.location}</p>
+            <small>{trip.date}</small>
           </div>
         ))}
       </div>
