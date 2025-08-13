@@ -1,4 +1,4 @@
-/* General reset and base */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,7 +13,6 @@ body {
   min-height: 100vh;
 }
 
-/* Navigation bar */
 nav {
   background-color: #0077cc;
   padding: 10px 20px;
@@ -35,7 +34,7 @@ nav a:hover {
   background-color: #005fa3;
 }
 
-/* Container for page content */
+
 .container {
   max-width: 900px;
   margin: 20px auto;
@@ -45,7 +44,7 @@ nav a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Links inside content */
+
 .container a {
   color: #0077cc;
   text-decoration: underline;
@@ -55,14 +54,14 @@ nav a:hover {
   color: #005fa3;
 }
 
-/* Responsive images */
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 6px;
 }
 
-/* Optional: Style buttons if you use any */
+
 button {
   background-color: #0077cc;
   border: none;
@@ -77,3 +76,4 @@ button {
 button:hover {
   background-color: #005fa3;
 }
+
