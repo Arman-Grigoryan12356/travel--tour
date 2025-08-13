@@ -12,7 +12,6 @@ export default function AddTrip() {
 
   const saveTrip = () => {
     alert(`Trip added: ${destination}`);
-    // For simplicity no storage; you can extend this later
     navigate("/my-journal");
   };
 
@@ -38,3 +37,4 @@ export default function AddTrip() {
     </div>
   );
 }
+
