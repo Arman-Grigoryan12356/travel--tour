@@ -29,7 +29,11 @@ export default function Explore() {
       <div className="gallery">
         {trips.map((trip) => (
           <div className="card" key={trip.id}>
-            <img src={trip.image} alt={trip.title} />
+            <img
+              src={trip.image}
+              alt={trip.title}
+              style={{ width: "770px", height: "auto" }}
+            />
             <h3>{trip.title}</h3>
             <p>{trip.location}</p>
             <small>{trip.date}</small>
@@ -39,4 +43,5 @@ export default function Explore() {
     </div>
   );
 }
+
 
