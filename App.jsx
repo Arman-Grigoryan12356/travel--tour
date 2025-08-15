@@ -1,52 +1,39 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
-import ProtectedRoute from "./ProtectedRoute";
-import Home from "./Home";
-import Explore from "./Explore";
-import Login from "./Login";
-import MyJournal from "./MyJournal";
-import AddTrip from "./AddTrip";
-import "./style.css";
+import { createContext, useState, useEffect } from "react";
 
-export default function App() {
+export const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedAuth = localStorage.getItem("isAuthenticated");
+    const savedUser = localStorage.getItem("user");
+    if (savedAuth === "true") {
+      setIsAuthenticated(true);
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  const login = (username, password) => {
+    if (username && password) {
+      setIsAuthenticated(true);
+      setUser({ username });
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("user", JSON.stringify({ username }));
+    }
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("user");
+  };
+
   return (
-    <AuthProvider>
-      <Router>
-        <header className="navbar">
-          <h1 className="logo">Travel Journal</h1>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/explore">Explore</Link>
-            <Link to="/login">Login</Link>
-          </nav>
-        </header>
-
-        <main className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/my-journal"
-              element={
-                <ProtectedRoute>
-                  <MyJournal />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/add-trip"
-              element={
-                <ProtectedRoute>
-                  <AddTrip />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </main>
-      </Router>
-    </AuthProvider>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
-
-
