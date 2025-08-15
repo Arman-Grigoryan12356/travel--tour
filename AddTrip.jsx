@@ -1,23 +1,21 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
-import "./style.css";
 
 export default function AddTrip() {
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-  const { user } = useContext(AuthContext);
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
-  const saveTrip = () => {
+  const handleAdd = () => {
     alert(`Trip added: ${destination}`);
     navigate("/my-journal");
   };
 
   return (
-    <div className="container">
-      <h2>Add Trip</h2>
+    <div className="page">
+      <h2>Add New Trip</h2>
       <input
         placeholder="Destination"
         value={destination}
@@ -33,8 +31,12 @@ export default function AddTrip() {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button onClick={saveTrip}>Save</button>
+      <input
+        placeholder="Image URL"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+      <button onClick={handleAdd}>Add Trip</button>
     </div>
   );
 }
-
