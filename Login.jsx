@@ -1,33 +1,34 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "./style.css";
 
-export default function MyJournal() {
-  const { user, logout } = useContext(AuthContext);
-  const [trips, setTrips] = useState([]);
+export default function Login() {
+  const { login } = useContext(AuthContext);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const deleteTrip = (index) => {
-    setTrips(trips.filter((_, i) => i !== index));
+  const handleLogin = () => {
+    login(username, password);
+    navigate("/my-journal");
   };
 
   return (
-    <div className="page">
-      <h2>{user?.username}'s Travel Journal</h2>
-      <Link to="/add-trip" className="btn">
-        Add Trip
-      </Link>
-      <button onClick={logout} className="btn danger">
-        Logout
-      </button>
-      <ul>
-        {trips.length === 0 && <p>No trips yet.</p>}
-        {trips.map((trip, index) => (
-          <li key={index}>
-            {trip.destination} ({trip.date})
-            <button onClick={() => deleteTrip(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+    <div className="container">
+      <h2>Login</h2>
+      <input
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
