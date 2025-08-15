@@ -12,33 +12,41 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/explore">Explore</Link>
-          <Link to="/login">Login</Link>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/my-journal"
-            element={
-              <ProtectedRoute>
-                <MyJournal />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/add-trip"
-            element={
-              <ProtectedRoute>
-                <AddTrip />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+        <header className="navbar">
+          <h1 className="logo">Travel Journal</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/explore">Explore</Link>
+            <Link to="/login">Login</Link>
+          </nav>
+        </header>
+
+        <main className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/my-journal"
+              element={
+                <ProtectedRoute>
+                  <MyJournal />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/add-trip"
+              element={
+                <ProtectedRoute>
+                  <AddTrip />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
       </Router>
     </AuthProvider>
   );
 }
+
+
